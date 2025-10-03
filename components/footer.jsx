@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Translogo from '../public/img/trans.png'
 
 export default function Footer (){
     return(
@@ -9,7 +8,7 @@ export default function Footer (){
 <div className="row p-5">
     <div className="col-md-3">
         <Image 
-            src={Translogo} 
+            src="/img/trans.png" 
             alt="Urbanesta" 
             width={150} 
             height={100} 

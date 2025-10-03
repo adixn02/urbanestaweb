@@ -1,12 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import heroImage from '../public/img/heroImage.jpg'
 
 export default function Hero() {
     return (
         <main className="heroSection position-relative overflow-hidden">
         <Image
-          src={heroImage}
+          src="/img/heroImage.jpg"
           alt="Hero Image"
           fill
           className="object-fit-cover"

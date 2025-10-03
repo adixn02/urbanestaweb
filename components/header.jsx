@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from '../public/img/logo.jpg'
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,7 +32,7 @@ export default function Header() {
                 {/* Logo */}
                 <Link href="/" className="d-flex align-items-center">
                     <Image 
-                        src={Logo} 
+                        src="/img/logo.jpg" 
                         alt="urbanestaLogo" 
                         width={60} 
                         height={60} 
@@ -43,7 +42,7 @@ export default function Header() {
                         quality={90}
                     />
                     <Image 
-                        src={Logo} 
+                        src="/img/logo.jpg" 
                         alt="urbanestaLogo" 
                         width={80} 
                         height={80} 
