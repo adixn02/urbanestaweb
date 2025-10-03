@@ -2,6 +2,10 @@
 const nextConfig = {
   // Enable standalone output for Docker optimization
   output: 'standalone',
+  // Configure for EC2 deployment with nginx proxy
+  env: {
+    PORT: process.env.PORT || '3012',
+  },
   images: {
     remotePatterns: [
       {
@@ -39,7 +43,7 @@ const nextConfig = {
       // Remove experimental features that cause issues
       experimental: {},
       // Performance optimizations
-      swcMinify: true,
+      // swcMinify is deprecated in Next.js 15+ and enabled by default
       // Optimize bundle
       webpack: (config, { dev, isServer }) => {
         if (!dev && !isServer) {

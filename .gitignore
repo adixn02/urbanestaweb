@@ -44,3 +44,11 @@ next-env.d.ts
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# PM2 logs (keep directory structure)
+logs/*.log
+logs/*.out
+logs/*.err
+logs/*.pid
+logs/*.lock
+logs/*.json
