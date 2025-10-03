@@ -43,8 +43,7 @@ const nextConfig = {
       // Remove experimental features that cause issues
       experimental: {},
       // Performance optimizations
-      // swcMinify is deprecated in Next.js 15+ and enabled by default
-      // Optimize bundle
+  
       webpack: (config, { dev, isServer }) => {
         if (!dev && !isServer) {
           config.optimization.splitChunks = {

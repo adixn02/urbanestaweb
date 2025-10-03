@@ -8,6 +8,50 @@ import { propertiesAPI, buildersAPI } from "@/lib/api";
 import PropertyCard from "./PropertyCard";
 import FeaturedSkeleton from "./FeaturedSkeleton";
 
+// Fallback data for when API is not available
+const getFallbackData = () => ({
+    builders: [
+        {
+            _id: 'fallback-builder-1',
+            name: 'DLF Limited',
+            logo: '/img/dlf_logo.jpg'
+        },
+        {
+            _id: 'fallback-builder-2',
+            name: 'Emaar India', 
+            logo: '/img/emarLogo.jpg'
+        }
+    ],
+    properties: [
+        {
+            _id: 'fallback-prop-1',
+            type: 'builder',
+            projectName: 'DLF The Aralias',
+            builder: { name: 'DLF Limited', logo: '/img/dlf_logo.jpg' },
+            city: { name: 'Gurgaon' },
+            minPrice: 5000000,
+            maxPrice: 15000000,
+            displayImage: '/img/dlf_background.jpg',
+            propertyAction: 'Sale',
+            subcategoryName: 'Apartment',
+            possessionDate: '2025'
+        },
+        {
+            _id: 'fallback-prop-2',
+            type: 'builder',
+            projectName: 'Emaar Palm Heights',
+            builder: { name: 'Emaar India', logo: '/img/emarLogo.jpg' },
+            city: { name: 'Gurgaon' },
+            minPrice: 8000000,
+            maxPrice: 20000000,
+            displayImage: '/img/emar_background.jpg',
+            propertyAction: 'Sale',
+            subcategoryName: 'Villa',
+            possessionDate: '2026'
+        }
+    ]
+});
+
 export default function FeaturedListings() {
   const [builders, setBuilders] = useState([]);
   const [projects, setProjects] = useState([]);
@@ -27,26 +71,29 @@ export default function FeaturedListings() {
         // Only update state if component is still mounted
         if (isMounted) {
           // Handle both old and new response formats
-          if (buildersResponse.error) {
-            console.error('Error fetching builders:', buildersResponse.error);
-            setBuilders([]);
+          if (buildersResponse.error || buildersResponse.fallback) {
+            console.warn('Builders API unavailable, using fallback data:', buildersResponse.error);
+            const fallbackData = getFallbackData();
+            setBuilders(fallbackData.builders);
           } else {
             setBuilders(buildersResponse.data || buildersResponse || []);
           }
 
-          if (propertiesResponse.error) {
-            console.error('Error fetching properties:', propertiesResponse.error);
-            setProjects([]);
+          if (propertiesResponse.error || propertiesResponse.fallback) {
+            console.warn('Properties API unavailable, using fallback data:', propertiesResponse.error);
+            const fallbackData = getFallbackData();
+            setProjects(fallbackData.properties);
           } else {
             setProjects(propertiesResponse.data || propertiesResponse || []);
           }
         }
       } catch (error) {
         console.error('Error fetching data for featured listings:', error);
-        // Fallback to empty arrays if API fails
+        // Fallback to sample data if API fails
         if (isMounted) {
-          setBuilders([]);
-          setProjects([]);
+          const fallbackData = getFallbackData();
+          setBuilders(fallbackData.builders);
+          setProjects(fallbackData.properties);
         }
       } finally {
         if (isMounted) {

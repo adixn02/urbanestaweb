@@ -5,6 +5,38 @@ import Link from "next/link";
 import { buildersAPI } from "@/lib/api";
 import BuilderSkeleton from "./BuilderSkeleton";
 
+// Fallback data for when API is not available
+const getFallbackBuilders = () => [
+    {
+        _id: 'fallback-1',
+        name: 'DLF Limited',
+        slug: 'dlf-limited',
+        logo: '/img/dlf_logo.jpg',
+        backgroundImage: '/img/dlf_background.jpg'
+    },
+    {
+        _id: 'fallback-2', 
+        name: 'Emaar India',
+        slug: 'emaar-india',
+        logo: '/img/emarLogo.jpg',
+        backgroundImage: '/img/emar_background.jpg'
+    },
+    {
+        _id: 'fallback-3',
+        name: 'Tata Housing',
+        slug: 'tata-housing', 
+        logo: '/img/tata_logo.jpg',
+        backgroundImage: '/img/tata_housing_background.jpg'
+    },
+    {
+        _id: 'fallback-4',
+        name: 'Godrej Properties',
+        slug: 'godrej-properties',
+        logo: '/img/gdrj_logo.jpg', 
+        backgroundImage: '/img/gdrj_background.jpg'
+    }
+];
+
 export default function Topbuilder() {
     const [builders, setBuilders] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,18 +52,19 @@ export default function Topbuilder() {
                 // Only update state if component is still mounted
                 if (isMounted) {
                     // Handle both old and new response formats
-                    if (response.error) {
-                        console.error('Error fetching builders:', response.error);
-                        setBuilders([]);
+                    if (response.error || response.fallback) {
+                        console.warn('API unavailable, using fallback data:', response.error);
+                        // Use fallback data when API is not available
+                        setBuilders(getFallbackBuilders());
                     } else {
                         setBuilders(response.data || response || []);
                     }
                 }
             } catch (error) {
                 console.error('Error fetching builders:', error);
-                // Fallback to empty array if API fails
+                // Fallback to sample data if API fails
                 if (isMounted) {
-                    setBuilders([]);
+                    setBuilders(getFallbackBuilders());
                 }
             } finally {
                 if (isMounted) {

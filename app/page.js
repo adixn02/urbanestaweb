@@ -10,51 +10,53 @@ import Link from "next/link";
 
 
 export default async function Home() {
-
-
   return (
     <>
-       <Header />
+      <Header />
+      
       {/* Hero Section with Search Bar */}
       <Hero />
-      {/* top builder section */}
+      
+      {/* Top Builder Section */}
       <ErrorBoundary>
         <Topbuilder />
       </ErrorBoundary>
-         
-.
+      
+      {/* View More Builders Button */}
+      <div className="container text-center my-4">
+        <Link href="/builder" className="btn btn-primary btn-lg">View More Builders</Link>
+      </div>
 
-   
-    <div className="container">
-               <Link href="/builder" className="btn btn-primary">View More Builders </Link>
-
-      {/* featured builder section */}
+      {/* Featured Builder Section */}
       <ErrorBoundary>
         <FeaturedBuilder />
       </ErrorBoundary>
-      {/* neighbourhood section */}
-      {/* Section Header */}
-      <div className="container">
-        <h2 className="display-6 display-md-5 fw-bold text-dark mb-3">Find the Neighborhood For You</h2>
-        <p className="text-muted">The neighborhoods best suited to your lifestyle, and the agents who know them best.</p>
-      </div>
-      <ErrorBoundary>
-        <Neighbourhood />
-      </ErrorBoundary>
-      {/* View All Button */}
-      <div >
-        <Link href="/city" className="btn btn-primary">View More Neighbourhood </Link>
-      </div>
-      {/* testomonial section */}
+      
+      {/* Neighbourhood Section */}
+      <section className="py-5">
+        <div className="container">
+          <div className="text-center mb-5">
+            <h2 className="display-6 display-md-5 fw-bold text-dark mb-3">Find the Neighborhood For You</h2>
+            <p className="text-muted fs-5">The neighborhoods best suited to your lifestyle, and the agents who know them best.</p>
+          </div>
+          
+          <ErrorBoundary>
+            <Neighbourhood />
+          </ErrorBoundary>
+          
+          {/* View All Neighbourhoods Button */}
+          <div className="text-center mt-4">
+            <Link href="/city" className="btn btn-primary btn-lg">View More Neighbourhoods</Link>
+          </div>
+        </div>
+      </section>
+      
+      {/* Testimonial Section */}
       <ErrorBoundary>
         <Testimonial />
       </ErrorBoundary>
 
-
-
-    </div>
-
       <Footer />
-     </>
+    </>
   );
 }
