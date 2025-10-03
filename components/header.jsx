@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from '../Assets/logo.jpg'
+import Logo from '../public/img/logo.jpg'
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

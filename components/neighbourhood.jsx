@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Logo from "../Assets/logo.jpg";
+// import Logo from "../Assets/logo.jpg";
 import Link from "next/link";
 import { citiesAPI } from "@/lib/api";
 import CitySkeleton from "./CitySkeleton";

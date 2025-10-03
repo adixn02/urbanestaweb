@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Translogo from '../Assets/trans.png'
+import Translogo from '../public/img/trans.png'
 
 export default function Footer (){
     return(

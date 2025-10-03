@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 // Fallback logo - used when a builder has no logo imported
-import LogoFallback from "../Assets/logo.jpg";
+import LogoFallback from "../public/img/logo.jpg";
 import Link from "next/link";
 import { propertiesAPI, buildersAPI } from "@/lib/api";
 import PropertyCard from "./PropertyCard";
